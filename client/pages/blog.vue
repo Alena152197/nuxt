@@ -38,6 +38,22 @@ const base_url = "http://localhost:1337"
     }
 }
 
+@media screen and (max-width: 800px) {
+    .posts {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .posts {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 25px;
+    }
+}
+
 article {
     background-color: #f5f5f5;
     padding: 10px;

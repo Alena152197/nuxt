@@ -20,6 +20,7 @@ nav {
     background-color: rgb(247, 175, 92);
     padding: 5px;
     border-radius: 10px;
+    
 }
 
 ul {
