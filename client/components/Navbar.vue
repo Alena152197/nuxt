@@ -16,10 +16,32 @@
 
 <style scoped>
 
+nav {
+    background-color: rgb(247, 175, 92);
+    padding: 5px;
+    border-radius: 10px;
+}
+
 ul {
     list-style: none;
     display: flex;
-    gap: 10px;
+    gap: 20px;
     padding: 0;
 }
+
+li a {
+    color: black;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+li a:hover {
+    border: 2px solid red;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: wheat;
+    
+} 
+
+
 </style>

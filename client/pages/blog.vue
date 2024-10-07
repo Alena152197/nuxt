@@ -45,6 +45,8 @@ article {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    border: 5px solid wheat;
+    border-radius: 15px;
 }
 
 article img {
@@ -57,5 +59,19 @@ article p {
 
 article a {
     display: block;
+    text-decoration: none;
+    font-weight: 500;
+    border: 2px solid red;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: wheat;
+    width: 100px;
+    text-align: center;
 }
+
+article a:hover {
+    padding: 7px;
+    color: red;
+}
+
 </style>
