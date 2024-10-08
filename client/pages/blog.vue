@@ -1,6 +1,5 @@
 <template>
     <h1>Блог</h1>
-
     <main>
         <div class="posts">
             <article v-for="(post, index) in posts" :key="post.id">
