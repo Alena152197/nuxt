@@ -77,7 +77,7 @@ article a {
     display: block;
     text-decoration: none;
     font-weight: 500;
-    border: 2px solid red;
+    border: 2px inset red;
     border-radius: 5px;
     padding: 5px;
     background-color: wheat;

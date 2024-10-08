@@ -37,7 +37,7 @@ li a {
 }
 
 li a:hover {
-    border: 2px solid red;
+    border: 3px inset red;
     border-radius: 5px;
     padding: 5px;
     background-color: wheat;
