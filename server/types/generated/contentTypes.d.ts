@@ -485,23 +485,21 @@ export interface PluginUsersPermissionsUser
   };
 }
 
-export interface ApiCategoryCategory extends Struct.SingleTypeSchema {
+export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
   collectionName: 'categories';
   info: {
     singularName: 'category';
     pluralName: 'categories';
     displayName: 'Category';
-    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    img: Schema.Attribute.Media<'images' | 'files'> & Schema.Attribute.Required;
-    decs: Schema.Attribute.Text & Schema.Attribute.Required;
     title: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.Unique;
+    posts: Schema.Attribute.Relation<'manyToMany', 'api::post.post'>;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
@@ -514,6 +512,35 @@ export interface ApiCategoryCategory extends Struct.SingleTypeSchema {
       'oneToMany',
       'api::category.category'
     >;
+  };
+}
+
+export interface ApiConfigConfig extends Struct.SingleTypeSchema {
+  collectionName: 'configs';
+  info: {
+    singularName: 'config';
+    pluralName: 'configs';
+    displayName: 'Config';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    desc: Schema.Attribute.Text & Schema.Attribute.Required;
+    keywords: Schema.Attribute.String & Schema.Attribute.Required;
+    favicon: Schema.Attribute.Media<'images' | 'files'> &
+      Schema.Attribute.Required;
+    canonical: Schema.Attribute.String & Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::config.config'>;
   };
 }
 
@@ -538,6 +565,10 @@ export interface ApiPostPost extends Struct.CollectionTypeSchema {
       true
     > &
       Schema.Attribute.Required;
+    categories: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::category.category'
+    >;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
@@ -926,6 +957,7 @@ declare module '@strapi/strapi' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::category.category': ApiCategoryCategory;
+      'api::config.config': ApiConfigConfig;
       'api::post.post': ApiPostPost;
       'admin::permission': AdminPermission;
       'admin::user': AdminUser;
