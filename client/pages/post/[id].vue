@@ -3,7 +3,7 @@
     <nav>
         <ul>
             <li><NuxtLink to="/blog">Блог</NuxtLink></li>
-            <li><NuxtLink :to="'/category/' + post.categories[0].id">
+            <li><NuxtLink :to="'/category/' + post.categories[0].documentId">
                 {{ post.categories[0].title }}</NuxtLink></li>
             <li><strong>{{ post.title }}</strong></li>
         </ul>
@@ -22,12 +22,19 @@ const markdown = new MarkdownIt();
 
 const { id } = useRoute().params
 
-const api = await $fetch('http://localhost:1337/api/posts?populate=*')
-const post = api.data[id]
+const api = await $fetch(`http://localhost:1337/api/posts/${id}?populate=*`);
+const post = api.data;
 const mark = markdown.render(post.body);
 
 
-const base_url = "http://localhost:1337"
+const base_url = 'http://localhost:1337'
+
+const apiConfic = await $fetch(`${base_url}/api/config?populate=*`)
+const config = apiConfic.data
+
+useHead({
+    title: `${post.title} - ${config.title}`
+})
 </script>
 
 
